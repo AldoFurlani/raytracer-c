@@ -31,7 +31,7 @@ In particular generates the executable FS_assg, which includes the full graphics
 
 ### Example Input File
 ```text
-640 480                 # image Width, image Height
+640 480                 # image width, image height
 2.0                     # view port height
 5.0                     # view port focal length
 0.0 20.0 0.0 500.0      # light source: x position, y position, z position, brightness
