@@ -21,7 +21,6 @@ The project uses a Makefile to manage three build stages.
 # creates all executables
 make all
 ```
-In particular generates the executable FS_assg, which includes the full graphics pipeline and anti-aliasing.
 
 ### Running
 ```bash
