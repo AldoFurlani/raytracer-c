@@ -25,7 +25,7 @@ make all
 ### Running
 ```bash
 # Usage: ./FS_assg <input_scene_file> <output_image_file>
-./FS_assg scene.txt output.ppm
+./raytracer scene.txt output.ppm
 ```
 
 ### Example Input File
