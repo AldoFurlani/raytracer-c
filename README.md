@@ -1,6 +1,6 @@
 # C Raytracer
 
-![Render Output](assets/FS12.png)
+![Render Output](assets/scene12.png)
 
 ## Overview
 A CPU-based raytracer written in C. This project implements a 3D graphics pipeline from scratch, including custom vector mathematics, memory management, and file parsing.
@@ -43,6 +43,27 @@ make all
 0.6 -0.3 -10.2 0.3 4
 -0.4 -0.1 -10.5 0.7 2
 ```
+
+## Testing 
+The project includes automated testing for rendering and vector operations.
+
+```bash
+# Ensure the test scripts have execution permissions
+chmod +x test_render.sh test_vector.sh
+```
+
+```bash
+# To test vector operations
+./test_vectors.sh
+```
+
+```bash
+# To test rendering
+./test_render.sh
+```
+
+
+
 
 
 
