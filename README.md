@@ -28,7 +28,7 @@ make all
 ./raytracer scene.txt output.ppm
 ```
 
-# Example Input File
+## Example Input File
 ```text
 640 480                 # image width, image height
 2.0                     # view port height
