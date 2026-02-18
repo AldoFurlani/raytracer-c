@@ -1,5 +1,7 @@
 bin/
-**/*_student*
-FS_assg
-MS1_assg
-MS2_assg
+*.o
+raytracer
+vector_tests
+.vscode
+venv
+*_generated.ppm

@@ -1,36 +1,43 @@
+CC = gcc
+CFLAGS = -Wall -std=c99
+LIBS = -lm
+BIN = bin
 
-all: MS1 MS2 FS
+all: $(BIN)/raytracer $(BIN)/vector_tests
 	rm -f *.o
-	
-# Executables
-MS1: assg_ms1 vector.o spheres.o color.o
-	gcc -Wall -std=c99 -DMS1 -o MS1_assg assg.o vector.o spheres.o color.o -lm
-	
-MS2: assg_ms2 vector.o spheres.o color.o
-	gcc -Wall -std=c99 -DMS2 -o MS2_assg assg.o vector.o spheres.o color.o -lm
 
-FS: assg_fs vector.o spheres.o color.o
-	gcc -Wall -std=c99 -DFS -o FS_assg assg.o vector.o spheres.o color.o -lm
+# Executables
+
+raytracer: $(BIN)/raytracer
+
+$(BIN)/raytracer: assg_fs.o vector.o spheres.o color.o
+	@mkdir -p $(BIN)
+	$(CC) $(CFLAGS) -DFS -o $@ assg_fs.o vector.o spheres.o color.o $(LIBS)
+
+tests: $(BIN)/vector_tests
+
+$(BIN)/vector_tests: assg_test.o vector.o spheres.o color.o
+	@mkdir -p $(BIN)
+	$(CC) $(CFLAGS) -DMS1 -o $@ assg_test.o vector.o spheres.o color.o $(LIBS)
 
 # Object files
-assg_fs: src/assg.c src/vector.h src/spheres.h src/color.h
-	gcc -Wall -std=c99 -DFS -c src/assg.c
 
-assg_ms2: src/assg.c src/vector.h src/spheres.h src/color.h
-	gcc -Wall -std=c99 -DMS2 -c src/assg.c
+assg_fs.o: src/assg.c src/vector.h src/spheres.h src/color.h
+	$(CC) $(CFLAGS) -DFS -c src/assg.c -o assg_fs.o
 
-assg_ms1: src/assg.c src/vector.h src/spheres.h src/color.h
-	gcc -Wall -std=c99 -DMS1 -c src/assg.c
+assg_test.o: src/assg.c src/vector.h src/spheres.h src/color.h
+	$(CC) $(CFLAGS) -DMS1 -c src/assg.c -o assg_test.o
 
+# Helper object files
 vector.o: src/vector.c src/vector.h
-	gcc -Wall -std=c99 -c src/vector.c
+	$(CC) $(CFLAGS) -c src/vector.c
 
 spheres.o: src/spheres.c src/spheres.h
-	gcc -Wall -std=c99 -c src/spheres.c
+	$(CC) $(CFLAGS) -c src/spheres.c
 
 color.o: src/color.c src/color.h
-	gcc -Wall -std=c99 -c src/color.c
+	$(CC) $(CFLAGS) -c src/color.c
 
+# cleanup
 clean:
-	rm -f *.o MS1_assg MS2_assg FS_assg
-
+	rm -rf $(BIN) *.o assg_fs.o assg_test.o
